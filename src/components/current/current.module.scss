@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     gap: 35px;
-    animation: fadeIn 0.8s cubic-bezier(0.26, 0.54, 0.32, 1);
+    animation: fadeIn 0.8s cubic-bezier(0.26, 0.54, 0.32, 1); /* Keep for initial subtle entrance */
     margin-bottom: 20px;
 
     @media (width < 992px) {
@@ -14,31 +14,20 @@
     &__info {
         max-width: 420px;
         width: 100%;
-        box-shadow: 
-            0 12px 30px -6px rgba(71, 147, 255, 0.2), /* Softer shadow */
-            inset 0 1px 1px rgba(255, 255, 255, 0.2);
-        border-radius: 28px;
+        box-shadow: 0 8px 20px rgba(71, 147, 255, 0.1); /* Lighter shadow */
+        border-radius: 18px; /* Slightly less rounded */
         padding: 30px;
         font-size: 25px;
         color: var(--color-alt);
         position: relative;
-        background: rgba(255, 255, 255, 0.12); /* Slightly less opaque */
-        backdrop-filter: blur(25px);
-        border: 1px solid rgba(255, 255, 255, 0.25); /* Softer border */
-        transition: all 0.4s ease-out; /* Smoother transition */
+        background: rgba(255, 255, 255, 0.07); /* More subtle background, remove blur */
+        border: none; /* Remove border */
+        transition: all 0.3s ease-out; /* Simpler transition */
         overflow: hidden;
         
         &::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(71, 147, 255, 0.1) 0%, transparent 70%); /* Slightly less intense */
-            opacity: 0;
-            transition: opacity 0.5s ease; /* Smoother transition */
-            z-index: -1;
+            /* Removed for minimalism */
+            display: none; 
         }
 
         @media (width < 992px) {
@@ -47,26 +36,23 @@
         }
 
         &:hover {
-            transform: translateY(-8px) scale(1.01); /* Softer lift and scale */
-            box-shadow: 
-                0 20px 40px rgba(71, 147, 255, 0.3), /* Softer and more diffused shadow */
-                inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px); /* Subtle lift */
+            box-shadow: 0 12px 25px rgba(71, 147, 255, 0.15); /* Slightly more prominent on hover */
             
             &::before {
-                opacity: 1;
+                /* Removed for minimalism */
             }
         }
     }
 
     &__deg {
-        color: #4793FF;
+        color: #4793FF; /* Solid color for minimalism */
         font-size: 110px;
         font-weight: 700;
-        background: linear-gradient(135deg, #5ca0ff, #2f79e3); /* More vibrant and modern blue gradient */
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: 0 5px 15px rgba(71, 147, 255, 0.2);
-        animation: scaleIn 0.6s cubic-bezier(0.26, 0.54, 0.32, 1);
+        /* -webkit-background-clip: text; */
+        /* -webkit-text-fill-color: transparent; */
+        /* text-shadow: 0 5px 15px rgba(71, 147, 255, 0.2); */ /* Removed text-shadow */
+        animation: none; /* Removed scaleIn animation */
         margin-bottom: 0;
         line-height: 0.9;
 
@@ -77,9 +63,9 @@
 
     &__day {
         color: var(--color);
-        font-size: 38px; /* Slightly reduced for better hierarchy with deg */
+        font-size: 42px;
         margin-top: 0;
-        margin-bottom: 35px;
+        margin-bottom: 30px; /* Slightly reduced margin */
         position: relative;
         font-weight: 600;
         letter-spacing: 0.5px;
@@ -87,22 +73,22 @@
         &::after {
             content: '';
             position: absolute;
-            bottom: -12px;
+            bottom: -8px; /* Lifted slightly */
             left: 0;
-            width: 70%;
-            height: 3px;
-            background: linear-gradient(to right, #4793FF, transparent);
+            width: 50%; /* Shorter line */
+            height: 2px; /* Thinner line */
+            background: #4793FF; /* Solid color for minimalism */
             border-radius: 3px;
         }
 
         @media (width < 576px) {
-            font-size: 34px; /* Adjusted for smaller screens */
-            margin-bottom: 30px;
+            font-size: 36px;
+            margin-bottom: 25px; /* Slightly reduced margin */
         }
     }
 
     &__time, &__city {
-        margin-bottom: 16px;
+        margin-bottom: 14px; /* Slightly reduced margin */
         display: flex;
         align-items: center;
         font-size: 18px;
@@ -111,12 +97,12 @@
         &::before {
             content: '';
             display: inline-block;
-            width: 8px;
-            height: 8px;
+            width: 6px; /* Smaller dot */
+            height: 6px; /* Smaller dot */
             background: #4793FF;
             border-radius: 50%;
-            margin-right: 10px;
-            box-shadow: 0 0 8px rgba(71, 147, 255, 0.4); /* Softer glow */
+            margin-right: 8px; /* Reduced margin */
+            box-shadow: none; /* Removed shadow for minimalism */
         }
         
         @media (width < 576px) {
@@ -129,9 +115,9 @@
         top: 40px;
         right: 25px;
         width: 130px;
-        animation: floatAnimation 4s ease-in-out infinite;
-        filter: drop-shadow(0 10px 25px rgba(71, 147, 255, 0.5));
-        transition: all 0.5s ease-out; /* Smoother transition */
+        animation: none; /* Removed floatAnimation */
+        filter: drop-shadow(0 8px 15px rgba(71, 147, 255, 0.25)); /* Lighter shadow */
+        transition: all 0.3s ease-out; /* Simpler transition */
 
         @media (width < 576px) {
             width: 110px;
@@ -140,9 +126,9 @@
         }
 
         &:hover {
-            animation-play-state: paused;
-            transform: rotate(10deg) scale(1.1); /* Softer rotation and scale */
-            filter: drop-shadow(0 12px 25px rgba(71, 147, 255, 0.55)); /* Softer shadow */
+            animation-play-state: initial; /* Ensure animation doesn't start if it's not removed */
+            transform: translateY(-5px) scale(1.05); /* Subtle lift and scale */
+            filter: drop-shadow(0 10px 20px rgba(71, 147, 255, 0.35)); /* Slightly more prominent on hover */
         }
     }
 
@@ -150,31 +136,20 @@
         padding: 35px;
         max-width: 750px;
         width: 100%;
-        box-shadow: 
-            0 12px 30px -6px rgba(71, 147, 255, 0.2), /* Softer shadow */
-            inset 0 1px 1px rgba(255, 255, 255, 0.2);
-        border-radius: 28px;
-        background: url(../../assets/img/map.png) no-repeat top right;
+        box-shadow: 0 8px 20px rgba(71, 147, 255, 0.1); /* Lighter shadow */
+        border-radius: 18px; /* Slightly less rounded */
+        background: url(../../assets/img/map.png) no-repeat top right, rgba(255, 255, 255, 0.07); /* More subtle background, remove blur */
+        background-size: contain; /* Ensure map doesn't tile */
         display: grid;
         gap: 30px;
-        background: rgba(255, 255, 255, 0.12); /* Slightly less opaque */
-        backdrop-filter: blur(25px);
-        border: 1px solid rgba(255, 255, 255, 0.25); /* Softer border */
-        transition: all 0.4s ease-out; /* Smoother transition */
+        border: none; /* Remove border */
+        transition: all 0.3s ease-out; /* Simpler transition */
         position: relative;
         overflow: hidden;
         
         &::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(71, 147, 255, 0.1) 0%, transparent 70%); /* Slightly less intense */
-            opacity: 0;
-            transition: opacity 0.5s ease; /* Smoother transition */
-            z-index: -1;
+            /* Removed for minimalism */
+            display: none; 
         }
 
         @media (width < 768px) {
@@ -183,13 +158,11 @@
         }
 
         &:hover {
-            transform: translateY(-8px) scale(1.005); /* Softer lift and scale */
-            box-shadow: 
-                0 20px 40px rgba(71, 147, 255, 0.3), /* Softer and more diffused shadow */
-                inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px); /* Subtle lift */
+            box-shadow: 0 12px 25px rgba(71, 147, 255, 0.15); /* Slightly more prominent on hover */
             
             &::before {
-                opacity: 1;
+                /* Removed for minimalism */
             }
         }
     }
@@ -200,12 +173,12 @@
         gap: 22px;
         font-size: 17px;
         align-items: center;
-        transition: all 0.3s ease-out; /* Smoother transition */
-        padding: 18px;
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.08); /* Softer border */
-        background: rgba(255, 255, 255, 0.06); /* Slightly less opaque */
-        backdrop-filter: blur(10px);
+        transition: all 0.2s ease-out; /* Simpler, faster transition */
+        padding: 16px; /* Slightly reduced padding */
+        border-radius: 12px; /* Less rounded */
+        border: none; /* Remove border */
+        background: rgba(255, 255, 255, 0.05); /* More subtle background, remove blur */
+        box-shadow: 0 3px 8px rgba(71, 147, 255, 0.05); /* Very subtle shadow */
         
         @media (width < 768px) {
             grid-template-columns: 42px 1fr;
@@ -214,30 +187,28 @@
 
         @media (width < 576px) {
             font-size: 15px;
-            padding: 14px;
+            padding: 12px;
         }
 
         &:hover {
-            background: rgba(71, 147, 255, 0.08); /* Less intense blue overlay */
-            backdrop-filter: blur(12px); /* Slightly less blur */
-            transform: translateY(-5px) scale(1.01); /* Softer lift and scale */
-            border-color: rgba(71, 147, 255, 0.15); /* Softer border color */
-            box-shadow: 
-                0 6px 15px rgba(71, 147, 255, 0.15), /* Softer shadow */
-                inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            background: rgba(71, 147, 255, 0.08); /* Subtle background change */
+            /* backdrop-filter: none; */ /* Ensure blur is removed */
+            transform: translateY(-3px); /* Subtle lift */
+            border-color: transparent; /* Ensure border doesn't appear */
+            box-shadow: 0 5px 12px rgba(71, 147, 255, 0.1); /* Slightly more prominent on hover */
         }
     }
 
     &__icon {
-        box-shadow: 0 8px 20px -4px rgba(71, 147, 255, 0.25); /* Softer shadow */
+        box-shadow: 0 5px 15px rgba(71, 147, 255, 0.2); /* Lighter shadow */
         border-radius: 50%;
         width: 52px;
         height: 52px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #5ca0ff, #2f79e3); /* More vibrant and modern blue gradient */
-        transition: all 0.4s ease-out; /* Smoother transition */
+        background: #4793FF; /* Solid color for minimalism */
+        transition: all 0.2s ease-out; /* Simpler, faster transition */
 
         @media (width < 768px) {
             width: 42px;
@@ -245,8 +216,8 @@
         }
 
         &:hover {
-            transform: rotate(10deg) scale(1.1); /* Softer rotation and scale */
-            box-shadow: 0 12px 25px rgba(71, 147, 255, 0.4); /* Softer shadow */
+            transform: translateY(-2px); /* Subtle lift */
+            box-shadow: 0 8px 18px rgba(71, 147, 255, 0.3); /* Slightly more prominent on hover */
         }
 
         img {
@@ -282,7 +253,7 @@
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(15px); /* Less dramatic initial movement */
     }
     to {
         opacity: 1;
@@ -290,71 +261,50 @@
     }
 }
 
-@keyframes scaleIn {
-    from {
-        transform: scale(0.85);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
+/* Removed scaleIn and floatAnimation for minimalism */
 
-@keyframes floatAnimation {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px) rotate(5deg);
-    }
-}
 
 // Тёмная тема
 :global(.active) {
     .current {
         &__info, &__content {
-            background: rgba(0, 0, 0, 0.35); /* Slightly adjusted opacity */
-            border-color: rgba(71, 147, 255, 0.15); /* Softer border */
-            box-shadow: 
-                0 12px 30px -6px rgba(0, 0, 0, 0.4), /* Softer shadow */
-                inset 0 1px 1px rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.2); /* Darker, subtle background */
+            border-color: transparent; /* Remove border */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Darker, subtle shadow */
             
             &::before {
-                background: radial-gradient(circle, rgba(71, 147, 255, 0.08) 0%, transparent 70%); /* Softer gradient */
+                /* Removed for minimalism */
+                display: none;
             }
 
             &:hover {
-                box-shadow: 
-                    0 20px 40px rgba(0, 0, 0, 0.5), /* Softer and diffused shadow */
-                    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4); /* Slightly more prominent on hover */
             }
         }
 
         &__card {
-            background: rgba(0, 0, 0, 0.2); /* Slightly adjusted opacity */
-            border-color: rgba(71, 147, 255, 0.08); /* Softer border */
+            background: rgba(0, 0, 0, 0.15); /* Darker, subtle background */
+            border-color: transparent; /* Remove border */
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); /* Darker, very subtle shadow */
             
             &:hover {
-                background: rgba(71, 147, 255, 0.15); /* Slightly less opaque blue overlay */
-                border-color: rgba(71, 147, 255, 0.2); /* Softer border */
-                box-shadow: 
-                    0 6px 15px rgba(0, 0, 0, 0.3), /* Softer shadow */
-                    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+                background: rgba(71, 147, 255, 0.1); /* Subtle hover background */
+                border-color: transparent; /* Remove border */
+                box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3); /* Slightly more prominent on hover */
             }
         }
 
         &__time, &__city {
             &::before {
                 background: #4793FF;
-                box-shadow: 0 0 8px rgba(71, 147, 255, 0.4); /* Softer glow */
+                box-shadow: none; /* Removed shadow for minimalism */
             }
         }
         
         &__deg {
-            background: linear-gradient(135deg, #7abaff, #3c82e6); /* Brighter, more modern gradient for dark theme */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #5ca0ff; /* Solid color for minimalism */
+            /* -webkit-background-clip: text; */
+            /* -webkit-text-fill-color: transparent; */
         }
     }
 }
@@ -367,17 +317,17 @@
         &__card,
         &__icon,
         &__img {
-            animation: none;
-            transition: none;
-            transform: none;
+            animation: none !important;
+            transition: none !important;
+            transform: none !important;
             
             &:hover {
-                transform: none;
-                box-shadow: none;
+                transform: none !important;
+                box-shadow: none !important;
             }
             
             &::before {
-                display: none;
+                display: none !important;
             }
         }
     }
