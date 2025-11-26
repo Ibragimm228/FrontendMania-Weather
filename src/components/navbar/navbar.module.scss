@@ -1,66 +1,118 @@
+/* --- Variables --- */
+// Spacing
+$nav-padding: 20px 30px;
+$gap-md: 10px;
+$gap-lg: 30px;
+
+// Border Radii
+$border-radius-sm: 8px;
+$border-radius-md: 15px;
+$border-radius-pill: 25px;
+
+// Transitions
+$transition-ease: all 0.3s ease-in-out;
+$transition-fast: 0.2s ease;
+
+// Box Shadows
+$shadow-light-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+$shadow-light-md: 0 4px 15px rgba(0, 0, 0, 0.1);
+$shadow-dark-md: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+// Blur effect
+$backdrop-blur-amount: 10px;
+
+// Light Theme Colors
+$color-bg-light-primary: rgba(255, 255, 255, 0.95);
+$color-bg-light-secondary: rgba(255, 255, 255, 0.85);
+$color-text-light: #333;
+$color-placeholder-light: #999;
+$color-border-light: rgba(0, 0, 0, 0.08); // Subtle border
+
+// Dark Theme Colors
+$color-bg-dark-primary: rgba(30, 30, 30, 0.95);
+$color-bg-dark-secondary: rgba(40, 40, 40, 0.85);
+$color-text-dark: #f0f0f0;
+$color-placeholder-dark: #aaa;
+$color-border-dark: rgba(255, 255, 255, 0.1); // Subtle border
+
+/* --- Navbar Styles --- */
 .nav {
-  padding: 20px 30px;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8));
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: $nav-padding;
+  background: linear-gradient(to right, $color-bg-light-primary, $color-bg-light-secondary);
+  backdrop-filter: blur($backdrop-blur-amount);
+  box-shadow: $shadow-light-md;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 0 0 15px 15px;
+  border-radius: 0 0 $border-radius-md $border-radius-md;
+  border-bottom: 1px solid $color-border-light; // Added subtle border
+  z-index: 1000; // Ensure navbar stays on top
+  position: relative; // Needed for z-index to work with flex context
 
   @media (width < 768px) {
     flex-wrap: wrap;
-    gap: 30px;
+    gap: $gap-lg;
     justify-content: center;
+    padding: 15px 20px; // Adjust padding for smaller screens
   }
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: $gap-md;
   text-decoration: none;
-  color: #333;
-  font-size: 1.5rem;
-  font-weight: 600;
-  transition: transform 0.3s ease;
+  color: $color-text-light;
+  font-size: 1.6rem; // Slightly larger for prominence
+  font-weight: 700; // Bolder
+  transition: transform $transition-fast;
 
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px); // More noticeable lift
   }
 
   &__img {
-    width: 40px;
-    height: 40px;
+    width: 36px; // Slightly smaller, more refined
+    height: 36px;
+    border-radius: 50%; // Make it circular if it's an icon/avatar
+    object-fit: cover;
   }
 
   @media (width < 576px) {
-    font-size: 20px;
+    font-size: 1.3rem; // Adjust for very small screens
   }
 }
 
 .search {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.9);
+  background: $color-bg-light-secondary;
   padding: 8px 15px;
-  border-radius: 25px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  border-radius: $border-radius-pill;
+  box-shadow: $shadow-light-sm;
+  transition: $transition-ease;
+  flex-shrink: 0; // Prevent search from shrinking too much
 
   &:hover {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: $shadow-light-md;
+  }
+
+  // Focus within the search container
+  &:focus-within {
+    box-shadow: $shadow-light-md;
   }
 
   &__img {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
+    width: 20px; // Slightly smaller icon
+    height: 20px;
+    margin-right: $gap-md;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    opacity: 0.8;
+    transition: transform $transition-fast, opacity $transition-fast;
 
     &:hover {
-      transform: rotate(180deg);
+      transform: rotate(90deg); // A different rotation for subtle flair
+      opacity: 1;
     }
   }
 
@@ -69,22 +121,25 @@
     outline: none;
     background: transparent;
     font-size: 1rem;
-    width: 200px;
-    color: #333;
-    transition: all 0.3s ease;
+    width: 220px; // Slightly wider default
+    color: $color-text-light;
+    transition: $transition-ease;
 
     &::placeholder {
-      color: #888;
-    }
-
-    @media (width < 576px) {
-      font-size: 20px;
-      max-width: 284%;
-      width: 100%;
+      color: $color-placeholder-light;
     }
 
     &:focus {
-      transform: scale(1.02);
+      width: 250px; // Expand on focus for better typing experience
+    }
+
+    @media (width < 576px) {
+      width: 100%; // Take full width within its flex container
+      min-width: 120px; // Ensure it's not too small
+      font-size: 1rem; // Keep consistent font size
+      &:focus {
+        width: 100%; // Maintain full width
+      }
     }
   }
 }
@@ -92,40 +147,47 @@
 .theme_toggle {
   background: none;
   border: none;
-  padding: 5px;
+  padding: 8px; // Slightly larger touch target
   cursor: pointer;
   border-radius: 50%;
-  transition: background-color 0.3s ease;
+  transition: background-color $transition-fast, transform $transition-fast;
+  display: flex; // To center icon if it's an SVG
+  align-items: center;
+  justify-content: center;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.08); // Softer hover
+    transform: scale(1.05); // Subtle scale effect
   }
+}
 
-  &_dark:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+// Ensure the `_dark` class is applied to the button itself for this hover to work
+.theme_toggle_dark:hover {
+  background-color: rgba(255, 255, 255, 0.12);
 }
 
 .input_wrapper {
   position: relative;
-  flex: 1;
+  flex: 1; // Allows the input to grow
+  display: flex; // Ensure spinner aligns correctly inside
+  align-items: center;
 }
 
 .spinner {
   position: absolute;
-  right: 10px;
+  right: 5px; // Adjust right position
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
+  width: 18px; // Slightly smaller spinner
+  height: 18px;
   border: 2px solid rgba(0, 0, 0, 0.1);
-  border-top-color: #333;
+  border-top-color: $color-text-light;
   border-radius: 50%;
   animation: spin 1s infinite linear;
 }
 
 .loading {
-  padding-right: 35px;
+  padding-right: 30px; // Adjust padding if spinner is smaller
 }
 
 @keyframes spin {
@@ -134,39 +196,60 @@
   }
 }
 
+/* --- Dark Theme Overrides (when :global(.active) is present) --- */
 :global(.active) {
   .nav {
-    background: linear-gradient(to right, rgba(30, 30, 30, 0.9), rgba(30, 30, 30, 0.8));
+    background: linear-gradient(to right, $color-bg-dark-primary, $color-bg-dark-secondary);
+    box-shadow: $shadow-dark-md;
+    border-bottom: 1px solid $color-border-dark;
   }
 
   .logo {
-    color: #fff;
+    color: $color-text-dark;
   }
 
   .search {
-    background: rgba(40, 40, 40, 0.9);
+    background: $color-bg-dark-secondary;
+    box-shadow: $shadow-dark-md; // Dark theme shadow on hover/focus
+
+    &:hover,
+    &:focus-within {
+      box-shadow: $shadow-dark-md;
+    }
+
+    &__img {
+      opacity: 0.9;
+    }
 
     &__input {
-      color: #fff;
+      color: $color-text-dark;
 
       &::placeholder {
-        color: #aaa;
+        color: $color-placeholder-dark;
       }
+    }
+  }
+
+  .theme_toggle {
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.12);
     }
   }
 
   .spinner {
     border-color: rgba(255, 255, 255, 0.1);
-    border-top-color: #fff;
+    border-top-color: $color-text-dark;
   }
 }
 
+/* --- Accessibility: Reduce motion --- */
 @media (prefers-reduced-motion: reduce) {
   .search__img,
   .spinner,
   .logo,
-  .search__input {
-    transition: none;
-    animation: none;
+  .search__input,
+  .theme_toggle {
+    transition: none !important;
+    animation: none !important;
   }
 }
